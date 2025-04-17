@@ -1,0 +1,70 @@
+<!-- StickiAffair Website by STICKIAFFFAIR --!>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StickiAffair - Motivational Transparent Notes</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dancing+Script|Poppins">
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; background: #faf7f3; color: #333; }
+        header, footer { background-color: #fff; padding: 20px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        nav a { margin: 0 15px; text-decoration: none; color: #333; }
+        nav a:hover { text-decoration: underline; }
+        .logo { font-family: 'Dancing Script', cursive; font-size: 2.5em; color: #c89f6e; }
+        main { padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .product { border: 1px solid #ddd; border-radius: 10px; padding: 15px; margin-bottom: 20px; }
+        button { background: #c89f6e; color: white; border: none; padding: 10px 15px; cursor: pointer; border-radius: 5px; }
+        button:hover { background: #b28458; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">StickiAffair</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Sticky Classics</a>
+        <a href="about.html">About Us</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<main>
+    <h2>Welcome to StickiAffair!</h2>
+    <p>Your home for elegant, motivational transparent sticky notes.</p>
+
+    <section class="product">
+        <h3>Self-Care Notes Bundle</h3>
+        <p>Encourage daily positivity and self-care with motivational notes.</p>
+        <button id="checkout-button">Buy Now (£10)</button>
+    </section>
+
+    <!-- Placeholder for other categories -->
+</main>
+
+<footer>
+    <p>&copy; 2025 StickiAffair. All rights reserved.</p>
+</footer>
+
+<script>
+    var stripe = Stripe('YOUR_STRIPE_PUBLIC_KEY');
+
+    document.getElementById('checkout-button').addEventListener('click', function () {
+        stripe.redirectToCheckout({
+            lineItems: [{price: 'YOUR_STRIPE_PRICE_ID', quantity: 1}],
+            mode: 'payment',
+            successUrl: 'https://stickaffair.com/success',
+            cancelUrl: 'https://stickaffair.com/cancel',
+        }).then(function (result) {
+            if (result.error) {
+                alert(result.error.message);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
